@@ -1,6 +1,6 @@
 # Pivotal
 
-A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotaltracker.com/help/api/rest/v5#top), released under the LGPL. 
+A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotaltracker.com/help/api/rest/v5#top), released under the LGPL by [OneSpot](http://onespot.com/).
 
 ```java
   PivotalTracker pivotalTracker = new PivotalTracker(PIVOTAL_API_TOKEN);
