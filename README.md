@@ -12,7 +12,7 @@ A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotalt
           .getAll();
   
   startedRefactoringStories.forEach((s) -> {
-      System.out.println(s.name);
+      System.out.println(s.getName());
   });
 ```
 
