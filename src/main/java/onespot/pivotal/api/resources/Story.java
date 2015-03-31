@@ -11,6 +11,46 @@ public class Story {
     public int projectId;
     public String name;
     public String description;
+    public StoryType storyType;
+    public StoryState currentState;
+    public float estimate;
+    public Instant acceptedAt, deadline, createdAt, updatedAt;
+    public int requestedById;
+    public List<Integer> ownerIds, labelIds, taskIds, followerIds, commentIds;
+    public List<Label> labels;
+    public Integer beforeId, afterId;
+    public int integrationId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Story story = (Story) o;
+
+        if (id != story.id) return false;
+        return projectId == story.projectId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + projectId;
+        return result;
+    }
+
+    public String externalId;
+    public String url;
+    public String kind;
+
+    public List<Label> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<Label> labels) {
+        this.labels = labels;
+    }
 
     public int getId() {
         return id;
@@ -195,18 +235,6 @@ public class Story {
     public void setKind(String kind) {
         this.kind = kind;
     }
-
-    public StoryType storyType;
-    public StoryState currentState;
-    public float estimate;
-    public Instant acceptedAt, deadline, createdAt, updatedAt;
-    public int requestedById;
-    public List<Integer> ownerIds, labelIds, taskIds, followerIds, commentIds;
-    public Integer beforeId, afterId;
-    public int integrationId;
-    public String externalId;
-    public String url;
-    public String kind;
 
     public enum StoryType {
         feature, bug, chore, release

@@ -12,4 +12,22 @@ public class Label {
     public Instant createdAt, updatedAt;
     public StoryCounts counts;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Label label = (Label) o;
+
+        if (!id.equals(label.id)) return false;
+        return projectId.equals(label.projectId);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + projectId.hashCode();
+        return result;
+    }
 }

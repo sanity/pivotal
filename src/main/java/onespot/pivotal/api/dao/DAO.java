@@ -11,12 +11,9 @@ public abstract class DAO {
     protected final String path;
     protected UrlParameterMultimap params;
 
-    // TODO(ic): DAOs should be immutable, params currently isn't
-    //           Consider making params a PMap
-    //           (see http://pcollections.googlecode.com/svn/trunk/docs/org/pcollections/PMap.html)
     public DAO(JsonRestClient jsonRestClient, String path, UrlParameterMultimap params) {
         this.jsonRestClient = jsonRestClient;
         this.path = path;
-        this.params = params;
+        this.params = params.deepCopy();
     }
 }

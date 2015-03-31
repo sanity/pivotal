@@ -1,6 +1,5 @@
 package onespot.pivotal.api;
 
-import com.google.gson.GsonBuilder;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.api.dao.ProjectsDAO;
@@ -16,7 +15,7 @@ public class PivotalTracker {
     private JsonRestClient jsonRestClient;
 
     public PivotalTracker(String pivotalToken) {
-        this(new JsonRestClient(new PivotalRestClient(pivotalToken), new GsonBuilder().create()));
+        this(new JsonRestClient(new PivotalRestClient(pivotalToken)));
     }
 
     public PivotalTracker(JsonRestClient jsonRestClient) {

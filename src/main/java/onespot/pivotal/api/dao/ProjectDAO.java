@@ -20,4 +20,12 @@ public class ProjectDAO extends DAO {
     public StoriesDAO stories() throws UnirestException {
         return new StoriesDAO(jsonRestClient, path +"/stories", params);
     }
+
+    public IterationsDAO iterations() throws UnirestException {
+        return new IterationsDAO(jsonRestClient, path + "/iterations", params);
+    }
+
+    public LabelsDAO labels() throws UnirestException {
+        return new LabelsDAO(jsonRestClient, path+"/labels", params);
+    }
 }
