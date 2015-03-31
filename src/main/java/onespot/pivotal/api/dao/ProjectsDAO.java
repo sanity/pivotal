@@ -17,11 +17,11 @@ public class ProjectsDAO extends DAO {
         super(jsonRestClient, pathPrefix, params);
     }
 
-    public List<Project> get() throws UnirestException {
+    public List<Project> id() throws UnirestException {
         return jsonRestClient.get(new TypeToken<List<Project>>(){}.getType(), path, params);
     }
 
-    public ProjectDAO get(int id) throws UnirestException {
+    public ProjectDAO id(int id) throws UnirestException {
         return new ProjectDAO(jsonRestClient, path +"/"+id, params);
     }
 }

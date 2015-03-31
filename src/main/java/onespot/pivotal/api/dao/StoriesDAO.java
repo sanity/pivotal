@@ -30,8 +30,12 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
         }.getType(), path, params);
     }
 
-    public StoryDAO get(int id) throws UnirestException {
+    public StoryDAO id(int id) throws UnirestException {
         return new StoryDAO(jsonRestClient, "/" + id, params);
+    }
+
+    public void post(Story story) throws UnirestException {
+        jsonRestClient.post(Story.class, path, params, story);
     }
 
     public StoriesDAO withLabel(String label) {

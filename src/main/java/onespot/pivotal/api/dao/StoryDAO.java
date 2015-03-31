@@ -17,6 +17,10 @@ public class StoryDAO extends DAO {
         return jsonRestClient.get(Story.class, path, params);
     }
 
+    public void put(Story story) throws UnirestException {
+        jsonRestClient.put(Story.class, path, params, story);
+    }
+
     public OwnersDAO owners() {
         return new OwnersDAO(jsonRestClient, path + "/owners", params);
     }

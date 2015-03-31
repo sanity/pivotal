@@ -63,19 +63,19 @@ public class JsonRestClient {
         return gson.fromJson(body, cls);
     }
 
-    public <T> T put(Type cls, String path, UrlParameterMultimap params, Object payload) throws UnirestException {
+    public <T> T put(Type cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T put(Class<T> cls, String path, UrlParameterMultimap params, Object payload) throws UnirestException {
+    public <T> T put(Class<T> cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T post(Class<T> cls, String path, UrlParameterMultimap params, Object payload) throws UnirestException {
+    public <T> T post(Class<T> cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T post(Type cls, String path, UrlParameterMultimap params, Object payload) throws UnirestException {
+    public <T> T post(Type cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
     }
 
