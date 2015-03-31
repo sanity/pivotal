@@ -1,8 +1,8 @@
 package onespot.pivotal.api.dao;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.rest.JsonRestClient;
 
 import java.lang.reflect.Type;
@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class AbstractPaginatedDAO<R> extends DAO {
     protected abstract Type getListTypeToken();
 
-    public AbstractPaginatedDAO(JsonRestClient jsonRestClient, String path, UrlParameterMultimap params) {
+    public AbstractPaginatedDAO(JsonRestClient jsonRestClient, String path, Multimap<String, String> params) {
         super(jsonRestClient, path, params);
     }
 
@@ -46,12 +46,12 @@ public abstract class AbstractPaginatedDAO<R> extends DAO {
     }
 
     public AbstractPaginatedDAO<R> limit(int limit) {
-        params.add("limit", Integer.toString(limit));
+        params.put("limit", Integer.toString(limit));
         return this;
     }
 
     public AbstractPaginatedDAO<R> offset(int offset) {
-        params.add("offset", Integer.toString(offset));
+        params.put("offset", Integer.toString(offset));
         return this;
     }
 }

@@ -1,9 +1,10 @@
 package onespot.pivotal.rest;
 
+import com.google.common.collect.HashMultimap;
+import com.google.common.collect.Multimap;
 import com.google.gson.*;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.url.UrlParameterMultimap;
 
 import java.lang.reflect.Type;
 import java.time.Instant;
@@ -51,39 +52,39 @@ public class JsonRestClient {
                 .create();
     }
 
-    public <T> T get(Class<T> cls, String path, UrlParameterMultimap params) throws UnirestException {
+    public <T> T get(Class<T> cls, String path, Multimap<String, String> params) throws UnirestException {
         HttpResponse<String> response = httpResponse(path, params);
         String body = extractBody(response);
         return gson.fromJson(body, cls);
     }
 
-    public <T> T get(Type cls, String path, UrlParameterMultimap params) throws UnirestException {
+    public <T> T get(Type cls, String path, Multimap<String, String> params) throws UnirestException {
         HttpResponse<String> response = httpResponse(path, params);
         String body = extractBody(response);
         return gson.fromJson(body, cls);
     }
 
-    public <T> T put(Type cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
+    public <T> T put(Type cls, String path, Multimap<String, String> params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T put(Class<T> cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
+    public <T> T put(Class<T> cls, String path, Multimap<String, String> params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T post(Class<T> cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
+    public <T> T post(Class<T> cls, String path, Multimap<String, String> params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T post(Type cls, String path, UrlParameterMultimap params, T payload) throws UnirestException {
+    public <T> T post(Type cls, String path, Multimap<String, String> params, T payload) throws UnirestException {
         return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T delete(Class<T> cls, String path, UrlParameterMultimap params) throws UnirestException {
+    public <T> T delete(Class<T> cls, String path, Multimap<String, String> params) throws UnirestException {
         return gson.fromJson(extractBody(restClient.delete(path, params)), cls);
     }
 
-    public <T> T delete(Type cls, String path, UrlParameterMultimap params) throws UnirestException {
+    public <T> T delete(Type cls, String path, Multimap<String, String> params) throws UnirestException {
         return gson.fromJson(extractBody(restClient.delete(path, params)), cls);
     }
 
@@ -99,10 +100,10 @@ public class JsonRestClient {
 
 
     private HttpResponse<String> httpResponse(String path) throws UnirestException {
-        return httpResponse(path, UrlParameterMultimap.newMultimap());
+        return httpResponse(path, HashMultimap.create());
     }
 
-    private HttpResponse<String> httpResponse(String path, UrlParameterMultimap params) throws UnirestException {
+    private HttpResponse<String> httpResponse(String path, Multimap<String, String> params) throws UnirestException {
         return restClient.get(path, params);
     }
 }

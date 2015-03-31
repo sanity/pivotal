@@ -20,6 +20,18 @@ public class Story {
     public List<Label> labels;
     public Integer beforeId, afterId;
     public int integrationId;
+    public List<Person> owners;
+    public String externalId;
+    public String url;
+    public String kind;
+
+    public List<Person> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(List<Person> owners) {
+        this.owners = owners;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -39,10 +51,6 @@ public class Story {
         result = 31 * result + projectId;
         return result;
     }
-
-    public String externalId;
-    public String url;
-    public String kind;
 
     public List<Label> getLabels() {
         return labels;

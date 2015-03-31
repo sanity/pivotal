@@ -1,8 +1,8 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.api.resources.Project;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class ProjectsDAO extends DAO {
 
-    public ProjectsDAO(JsonRestClient jsonRestClient, String pathPrefix, UrlParameterMultimap params) {
+    public ProjectsDAO(JsonRestClient jsonRestClient, String pathPrefix, Multimap<String, String> params) {
         super(jsonRestClient, pathPrefix, params);
     }
 

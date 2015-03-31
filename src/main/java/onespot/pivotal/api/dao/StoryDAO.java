@@ -1,7 +1,7 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.collect.Multimap;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.api.resources.Story;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -9,7 +9,7 @@ import onespot.pivotal.rest.JsonRestClient;
  * Created by ian on 3/29/15.
  */
 public class StoryDAO extends DAO {
-    public StoryDAO(JsonRestClient jsonRestClient, String path, UrlParameterMultimap params) {
+    public StoryDAO(JsonRestClient jsonRestClient, String path, Multimap<String, String> params) {
         super(jsonRestClient, path, params);
     }
 

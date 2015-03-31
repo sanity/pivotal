@@ -1,7 +1,7 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
-import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.api.resources.Iteration;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Created by ian on 3/30/15.
  */
 public class IterationsDAO extends AbstractPaginatedDAO<Iteration> {
-    public IterationsDAO(JsonRestClient jsonRestClient, String path, UrlParameterMultimap params) {
+    public IterationsDAO(JsonRestClient jsonRestClient, String path, Multimap<String, String> params) {
         super(jsonRestClient, path, params);
     }
 
@@ -23,12 +23,12 @@ public class IterationsDAO extends AbstractPaginatedDAO<Iteration> {
     }
 
     public IterationsDAO withLabel(String label) {
-        params.add("label", label);
+        params.put("label", label);
         return this;
     }
 
     public IterationsDAO scope(IterationsScope iterationsScope) {
-        params.add("scope", iterationsScope.name());
+        params.put("scope", iterationsScope.name());
         return this;
     }
 

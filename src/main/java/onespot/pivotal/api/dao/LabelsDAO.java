@@ -1,8 +1,8 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.url.UrlParameterMultimap;
 import onespot.pivotal.api.resources.Label;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -12,7 +12,7 @@ import java.util.List;
  * Created by ian on 3/30/15.
  */
 public class LabelsDAO extends DAO {
-    public LabelsDAO(JsonRestClient jsonRestClient, String path, UrlParameterMultimap params) {
+    public LabelsDAO(JsonRestClient jsonRestClient, String path, Multimap<String, String> params) {
         super(jsonRestClient, path, params);
     }
 

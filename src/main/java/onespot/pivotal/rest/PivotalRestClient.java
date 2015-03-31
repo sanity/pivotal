@@ -1,10 +1,13 @@
 package onespot.pivotal.rest;
 
+import com.google.common.base.Joiner;
+import com.google.common.collect.Multimap;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import gumi.builders.UrlBuilder;
-import gumi.builders.url.UrlParameterMultimap;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by ian on 3/23/15.
@@ -18,27 +21,47 @@ public class PivotalRestClient implements RestClient {
     }
 
     @Override
-    public HttpResponse<String> get(String path, UrlParameterMultimap params) throws UnirestException {
-        UrlBuilder urlBuilder = UrlBuilder.fromString(URL_PREFIX + path).withParameters(params);
-        return Unirest.get(urlBuilder.toString()).header("X-TrackerToken", apiToken).asString();
+    public HttpResponse<String> get(String path, Multimap<String, String> params) throws UnirestException {
+        String parameters = paramsToStringWithoutURLEncoding(params);
+
+        String url = URL_PREFIX+"/"+path+"?"+parameters;
+
+        return Unirest.get(url).header("X-TrackerToken", apiToken).asString();
+    }
+
+    /*
+     * Don't URL encode because this will encode comma (,), whereas the 'fields'
+     * URL parameter is expected to contain commas.  I've read conflicting
+     * guidelines on whether this is allowed for query values, but someone
+     * at Pivotal Labs clearly thinks that it is.
+     *
+     * TODO: Figure out what the actual standard is, which hopefully permits
+     *       commas in query parameter values, and enforce that.
+     */
+    private String paramsToStringWithoutURLEncoding(Multimap<String, String> params) {
+        List<String> parameterList = params.entries().stream()
+                .map(entry -> entry.getKey()+"="+entry.getValue())
+                .collect(Collectors.toList());
+
+        return Joiner.on('&').join(parameterList);
     }
 
 
     @Override
-    public HttpResponse<String> put(String path, UrlParameterMultimap params, String payload) throws UnirestException {
+    public HttpResponse<String> put(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
         return Unirest.put(URL_PREFIX+ "/" + path).header("X-TrackerToken", apiToken)
                 .body(payload).asString();
     }
 
 
     @Override
-    public HttpResponse<String> post(String path, UrlParameterMultimap params, String payload) throws UnirestException {
+    public HttpResponse<String> post(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
         return Unirest.post(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).body(payload).asString();
     }
 
 
     @Override
-    public HttpResponse<String> delete(String path, UrlParameterMultimap params) throws UnirestException {
+    public HttpResponse<String> delete(String path, com.google.common.collect.Multimap<String, String> params) throws UnirestException {
         return Unirest.delete(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).asString();
     }
 
