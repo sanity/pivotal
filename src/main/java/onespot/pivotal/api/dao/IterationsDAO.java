@@ -1,5 +1,6 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import onespot.pivotal.api.resources.Iteration;
@@ -24,6 +25,11 @@ public class IterationsDAO extends AbstractPaginatedDAO<Iteration> {
 
     public IterationsDAO withLabel(String label) {
         params.put("label", label);
+        return this;
+    }
+
+    public IterationsDAO withFields(Iteration.IterationFieldNames... fields) {
+        params.put("fields", Joiner.on(',').join(fields));
         return this;
     }
 

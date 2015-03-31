@@ -77,4 +77,8 @@ public class Iteration {
     public void setKind(String kind) {
         this.kind = kind;
     }
+
+    public enum IterationFieldNames {
+        number,project_id,length,team_strength,story_ids,stories,start,finish,kind
+    }
 }

@@ -30,4 +30,8 @@ public class Label {
         result = 31 * result + projectId.hashCode();
         return result;
     }
+
+    public enum LabelFieldNames {
+        id,project_id,name,created_at,updated_at,counts
+    }
 }

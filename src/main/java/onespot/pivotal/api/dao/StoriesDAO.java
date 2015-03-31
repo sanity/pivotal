@@ -1,5 +1,6 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -38,8 +39,8 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
         jsonRestClient.post(Story.class, path, params, story);
     }
 
-    public StoriesDAO withFields(String fields) {
-        params.put("fields", fields);
+    public StoriesDAO withFields(Story.StoryFieldNames... fields) {
+        params.put("fields", Joiner.on(',').join(fields));
         return this;
     }
 

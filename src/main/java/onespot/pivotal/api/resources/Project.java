@@ -100,4 +100,8 @@ public class Project {
                 ", kind='" + kind + '\'' +
                 '}';
     }
+
+    public enum ProjectFieldNames {
+        id,name,version,iteration_length,week_start_day,po_integer_scale,po_integer_scale_is_custom,bugs_and_chores_are_estimatable,automatic_planning,enable_following,enable_tasks,start_date,time_zone,velocity_averaged_over,shown_iterations_start_time,start_time,number_of_done_iterations_to_show,has_google_domain,description,profile_content,enable_incoming_emails,initial_velocity,project_type,is_public,atom_enabled,current_iteration_number,current_velocity,account_id,accounting_type,featured,story_ids,epic_ids,membership_ids,label_ids,integration_ids,iteration_override_numbers,created_at,updated_at,kind
+    }
 }

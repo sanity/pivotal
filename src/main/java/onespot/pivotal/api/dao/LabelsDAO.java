@@ -1,5 +1,6 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -22,5 +23,10 @@ public class LabelsDAO extends DAO {
 
     public Label get(int id) throws UnirestException {
         return jsonRestClient.get(Label.class, "/"+id, params);
+    }
+
+    public LabelsDAO withFields(Label.LabelFieldNames... fields) {
+        params.put("fields", Joiner.on(',').join(fields));
+        return this;
     }
 }

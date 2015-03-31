@@ -1,5 +1,6 @@
 package onespot.pivotal.api.dao;
 
+import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -23,5 +24,10 @@ public class ProjectsDAO extends DAO {
 
     public ProjectDAO id(int id) throws UnirestException {
         return new ProjectDAO(jsonRestClient, path +"/"+id, params);
+    }
+
+    public ProjectsDAO withFields(Project.ProjectFieldNames... fields) {
+        params.put("fields", Joiner.on(',').join(fields));
+        return this;
     }
 }

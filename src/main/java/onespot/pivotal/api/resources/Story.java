@@ -251,4 +251,8 @@ public class Story {
     public enum StoryState {
         accepted, delivered, finished, started, rejected, planned, unstarted, unscheduled
     }
+
+    public enum StoryFieldNames {
+        id,project_id,name,description,story_type,current_state,estimate,accepted_at,deadline,created_at,updated_at,requested_by_id,owner_ids,label_ids,task_ids,follower_ids,comment_ids,labels,before_id,after_id,integration_id,owners,external_id,url,kind
+    }
 }
