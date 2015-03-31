@@ -8,7 +8,7 @@ A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotalt
   List<Story> startedRefactoringStories = pivotalTracker.projects().get(PROJECT_ID)
           .stories()
           .withLabel("refactoring")
-          .withState(Story.StoryState.started)
+          .withState(started)
           .getAll();
   
   startedRefactoringStories.forEach((s) -> {
