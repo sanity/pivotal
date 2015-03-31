@@ -8,7 +8,7 @@ A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotalt
   List<Story> stories = pivotalTracker.projects().get(PROJECT_ID)
                 .stories()
                 .withFields(owners, accepted_at, estimate)
-                .acceptedAfter(Instant.now().minus(2 * 30 * 24, ChronoUnit.HOURS))
+                .acceptedAfter(now().minus(2 * 30 * 24, HOURS))
                 .getAll();
   
   stories.forEach((s) -> {
