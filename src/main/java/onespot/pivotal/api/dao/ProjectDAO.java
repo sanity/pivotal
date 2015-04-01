@@ -28,4 +28,8 @@ public class ProjectDAO extends DAO {
     public LabelsDAO labels() throws UnirestException {
         return new LabelsDAO(jsonRestClient, path+"/labels", params);
     }
+
+    public ActivitiesDAO activity() {
+        return new ActivitiesDAO(jsonRestClient, path + "/activity", params);
+    }
 }

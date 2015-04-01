@@ -43,12 +43,27 @@ public class JsonRestClient {
         }
     }
 
-    public JsonRestClient(RestClient restClient) {
+    private static class JsonObjectTypeAdapter implements JsonSerializer<JsonObject>, JsonDeserializer<JsonObject> {
+
+        @Override
+        public JsonObject deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+            return (JsonObject) json;
+        }
+
+        @Override
+        public JsonElement serialize(JsonObject src, Type typeOfSrc, JsonSerializationContext context) {
+            return src;
+        }
+    }
+
+
+        public JsonRestClient(RestClient restClient) {
         this.restClient = restClient;
         this.gson = new GsonBuilder()
             .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
                 .registerTypeAdapter(Instant.class, new InstantTypeAdapter())
                 .registerTypeAdapter(LocalDate.class, new LocalDateTypeAdapter())
+                .registerTypeAdapter(JsonObject.class, new JsonObjectTypeAdapter())
                 .create();
     }
 
@@ -60,8 +75,12 @@ public class JsonRestClient {
 
     public <T> T get(Type cls, String path, Multimap<String, String> params) throws UnirestException {
         HttpResponse<String> response = httpResponse(path, params);
-        String body = extractBody(response);
-        return gson.fromJson(body, cls);
+        try {
+            String body = extractBody(response);
+            return gson.fromJson(body, cls);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("Failed to GET "+path, e);
+        }
     }
 
     public <T> T put(Type cls, String path, Multimap<String, String> params, T payload) throws UnirestException {

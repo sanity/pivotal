@@ -32,7 +32,7 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
     }
 
     public StoryDAO id(int id) throws UnirestException {
-        return new StoryDAO(jsonRestClient, "/" + id, params);
+        return new StoryDAO(jsonRestClient, path + "/" + id, params);
     }
 
     public void post(Story story) throws UnirestException {
