@@ -24,4 +24,100 @@ public class Activity {
     public Integer performedById;
     public Person performedBy;
     public Instant occurredAt;
+
+    public String getKind() {
+        return kind;
+    }
+
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+    public Integer getProjectVersion() {
+        return projectVersion;
+    }
+
+    public void setProjectVersion(Integer projectVersion) {
+        this.projectVersion = projectVersion;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(String highlight) {
+        this.highlight = highlight;
+    }
+
+    public List<JsonObject> getChanges() {
+        return changes;
+    }
+
+    public void setChanges(List<JsonObject> changes) {
+        this.changes = changes;
+    }
+
+    public List<JsonObject> getPrimaryResources() {
+        return primaryResources;
+    }
+
+    public void setPrimaryResources(List<JsonObject> primaryResources) {
+        this.primaryResources = primaryResources;
+    }
+
+    public Integer getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Integer projectId) {
+        this.projectId = projectId;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
+    public Integer getPerformedById() {
+        return performedById;
+    }
+
+    public void setPerformedById(Integer performedById) {
+        this.performedById = performedById;
+    }
+
+    public Person getPerformedBy() {
+        return performedBy;
+    }
+
+    public void setPerformedBy(Person performedBy) {
+        this.performedBy = performedBy;
+    }
+
+    public Instant getOccurredAt() {
+        return occurredAt;
+    }
+
+    public void setOccurredAt(Instant occurredAt) {
+        this.occurredAt = occurredAt;
+    }
 }
