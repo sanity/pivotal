@@ -14,7 +14,10 @@ public class Activity {
     public Integer projectVersion;
     public String message;
     public String highlight;
-    // TODO: Might not be flexible enough
+    // TODO: Map these to POJOs rather than arbitrary JsonObjects, problem is
+    //       that the API spec doesn't appear to specify the schema for these
+    //       changes or resources, except by way of example, which may be
+    //       fragile.
     public List<JsonObject> changes, primaryResources;
     public Integer projectId;
     public Project project;
