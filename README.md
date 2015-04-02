@@ -3,13 +3,6 @@
 A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotaltracker.com/help/api/rest/v5#top), released under the LGPL by [OneSpot](http://onespot.com/).
 
 ```java
-  import onespot.pivotal.api.PivotalTracker;
-  import onespot.pivotal.api.resources.Story;
-  import java.util.List;
-  import static onespot.pivotal.api.resources.Story.StoryFieldNames.*;
-  import static java.time.Instant.*;
-  import static java.time.temporal.ChronoUnit.*;
-
   PivotalTracker pivotalTracker = new PivotalTracker(PIVOTAL_API_TOKEN);
 
   List<Story> stories = pivotalTracker.projects().id(PROJECT_ID)
