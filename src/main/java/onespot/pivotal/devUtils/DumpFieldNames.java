@@ -2,7 +2,7 @@ package onespot.pivotal.devUtils;
 
 import com.google.common.base.Joiner;
 import com.google.gson.FieldNamingPolicy;
-import onespot.pivotal.api.resources.Project;
+import onespot.pivotal.api.resources.Epic;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class DumpFieldNames {
     public static void main(String[] args) {
-        Class<?> cls = Project.class;
+        Class<?> cls = Epic.class;
         System.out.println("public enum "+cls.getSimpleName()+"FieldNames {");
         System.out.println("   "+
                 Joiner.on(',').join(

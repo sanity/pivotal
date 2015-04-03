@@ -17,18 +17,22 @@ public class ProjectDAO extends DAO {
         return jsonRestClient.get(Project.class, path, params);
     }
 
-    public StoriesDAO stories() throws UnirestException {
+    public StoriesDAO stories()  {
         return new StoriesDAO(jsonRestClient, path +"/stories", params);
     }
 
-    public IterationsDAO iterations() throws UnirestException {
+    public IterationsDAO iterations()  {
         return new IterationsDAO(jsonRestClient, path + "/iterations", params);
     }
 
-    public LabelsDAO labels() throws UnirestException {
+    public LabelsDAO labels()  {
         return new LabelsDAO(jsonRestClient, path+"/labels", params);
     }
 
+    public EpicsDAO epics()  {
+        return new EpicsDAO(jsonRestClient, path+"/epics", params);
+    }
+    
     public ActivitiesDAO activity() {
         return new ActivitiesDAO(jsonRestClient, path + "/activity", params);
     }
