@@ -16,11 +16,11 @@ A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotalt
   });
 ```
 
-This is **pre-alpha quality**.  The API is perhaps only 10% supported so far, however it is probably the most useful 10%.
+The library is far from complete, the API is perhaps only 10% supported so far, however it is probably the most useful 10%.  Adding support for new parts of the API is very easy (see below), and pull requests will be most welcome.
 
-### Usage
+### Maven / Gradle
 
-For Maven/Gradle repository see [JitPack.io](https://jitpack.io/#onespot/pivotal/).
+See [JitPack.io](https://jitpack.io/#onespot/pivotal/).
 
 ### Contributing
 
