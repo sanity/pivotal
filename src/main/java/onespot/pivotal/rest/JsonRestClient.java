@@ -92,7 +92,8 @@ public class JsonRestClient {
     }
 
     public <T> T post(Class<T> cls, String path, Multimap<String, String> params, T payload) throws UnirestException {
-        return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
+        String payloadJson = gson.toJson(payload);
+        return gson.fromJson(extractBody(restClient.post(path, params, payloadJson)), cls);
     }
 
     public <T> T post(Type cls, String path, Multimap<String, String> params, T payload) throws UnirestException {

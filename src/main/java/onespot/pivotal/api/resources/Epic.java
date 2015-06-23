@@ -7,7 +7,7 @@ import java.util.List;
  * Created by ian on 4/3/15.
  */
 public class Epic {
-    public int id;
+    public Integer id;
     public int projectId;
     public String name;
     public int labelId;
@@ -21,6 +21,25 @@ public class Epic {
     public Integer afterId, beforeId;
     public String url;
     public String kind;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Epic epic = (Epic) o;
+
+        if (id != epic.id) return false;
+        return projectId == epic.projectId;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + projectId;
+        return result;
+    }
 
     public int getId() {
         return id;

@@ -7,7 +7,7 @@ import java.util.List;
  * Created by ian on 4/3/15.
  */
 public class Comment {
-    public int id;
+    public Integer id;
     public Integer storyId;
     public Integer epicId;
     public String text;

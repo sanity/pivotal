@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * Created by ian on 3/23/15.
  */
 public class PivotalRestClient implements RestClient {
-    public static final String URL_PREFIX = "https://www.pivotaltracker.com/services/v5/";
+    public static final String URL_PREFIX = "https://www.pivotaltracker.com/services/v5";
     private final String apiToken;
 
     public PivotalRestClient(String apiToken) {
@@ -50,13 +50,17 @@ public class PivotalRestClient implements RestClient {
     @Override
     public HttpResponse<String> put(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
         return Unirest.put(URL_PREFIX+ "/" + path).header("X-TrackerToken", apiToken)
+                .header("Content-Type", "application/json")
                 .body(payload).asString();
     }
 
 
     @Override
     public HttpResponse<String> post(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
-        return Unirest.post(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).body(payload).asString();
+        String url = URL_PREFIX + "/" + path;
+        return Unirest.post(url).header("X-TrackerToken", apiToken)
+                .header("Content-Type", "application/json")
+                .body(payload).asString();
     }
 
 

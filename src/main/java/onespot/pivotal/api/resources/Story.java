@@ -7,7 +7,7 @@ import java.util.List;
  * Created by ian on 3/27/15.
  */
 public class Story {
-    public int id;
+    public Integer id;
     public int projectId;
     public String name;
     public String description;

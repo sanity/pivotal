@@ -25,6 +25,11 @@ public class StoryDAO extends DAO {
         return new OwnersDAO(jsonRestClient, path + "/owners", params);
     }
 
+    public CommentsDAO comments() {
+        return new CommentsDAO(jsonRestClient, path + "/comments", params);
+    }
+
+
     public ActivitiesDAO activity() {
         return new ActivitiesDAO(jsonRestClient, path + "/activity", params);
     }
