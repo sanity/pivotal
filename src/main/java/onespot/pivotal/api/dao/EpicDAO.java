@@ -1,7 +1,7 @@
 package onespot.pivotal.api.dao;
 
 import com.google.common.collect.Multimap;
-import com.mashape.unirest.http.exceptions.UnirestException;
+
 import onespot.pivotal.api.resources.Epic;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -13,11 +13,11 @@ public class EpicDAO extends DAO {
         super(jsonRestClient, path, params);
     }
 
-    public Epic get() throws UnirestException {
+    public Epic get() {
         return jsonRestClient.get(Epic.class, path, params);
     }
 
-    public void put(Epic epic) throws UnirestException {
+    public void put(Epic epic) {
         jsonRestClient.put(Epic.class, path, params, epic);
     }
 }

@@ -1,15 +1,15 @@
 package onespot.pivotal.api.dao;
 
-import com.google.common.base.Joiner;
-import com.google.common.collect.Multimap;
-import com.google.gson.reflect.TypeToken;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import onespot.pivotal.api.resources.Story;
-import onespot.pivotal.rest.JsonRestClient;
-
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.util.List;
+
+import com.google.common.base.Joiner;
+import com.google.common.collect.Multimap;
+import com.google.gson.reflect.TypeToken;
+
+import onespot.pivotal.api.resources.Story;
+import onespot.pivotal.rest.JsonRestClient;
 
 /**
  * Created by ian on 3/29/15.
@@ -26,16 +26,16 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
     }
 
     @Override
-    public List<Story> get() throws UnirestException {
+    public List<Story> get() {
         return jsonRestClient.get(new TypeToken<List<Story>>() {
         }.getType(), path, params);
     }
 
-    public StoryDAO id(int id) throws UnirestException {
+    public StoryDAO id(int id) {
         return new StoryDAO(jsonRestClient, path + "/" + id, params);
     }
 
-    public void post(Story story) throws UnirestException {
+    public void post(Story story) {
         jsonRestClient.post(Story.class, path, params, story);
     }
 

@@ -1,13 +1,15 @@
 package onespot.pivotal.rest;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import onespot.pivotal.api.ex.PivotalAPIException;
 
 /**
  * Created by ian on 3/23/15.
@@ -21,12 +23,16 @@ public class PivotalRestClient implements RestClient {
     }
 
     @Override
-    public HttpResponse<String> get(String path, Multimap<String, String> params) throws UnirestException {
+    public HttpResponse<String> get(String path, Multimap<String, String> params) throws PivotalAPIException {
         String parameters = paramsToStringWithoutURLEncoding(params);
 
         String url = URL_PREFIX+"/"+path+"?"+parameters;
 
-        return Unirest.get(url).header("X-TrackerToken", apiToken).asString();
+        try {
+			return Unirest.get(url).header("X-TrackerToken", apiToken).asString();
+		} catch (UnirestException uex) {
+			throw new PivotalAPIException(uex);
+		}
     }
 
     /*
@@ -48,25 +54,37 @@ public class PivotalRestClient implements RestClient {
 
 
     @Override
-    public HttpResponse<String> put(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
-        return Unirest.put(URL_PREFIX+ "/" + path).header("X-TrackerToken", apiToken)
-                .header("Content-Type", "application/json")
-                .body(payload).asString();
+    public HttpResponse<String> put(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws PivotalAPIException {
+        try {
+			return Unirest.put(URL_PREFIX+ "/" + path).header("X-TrackerToken", apiToken)
+			        .header("Content-Type", "application/json")
+			        .body(payload).asString();
+		} catch (UnirestException uex) {
+			throw new PivotalAPIException(uex);
+		}
     }
 
 
     @Override
-    public HttpResponse<String> post(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws UnirestException {
+    public HttpResponse<String> post(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws PivotalAPIException {
         String url = URL_PREFIX + "/" + path;
-        return Unirest.post(url).header("X-TrackerToken", apiToken)
-                .header("Content-Type", "application/json")
-                .body(payload).asString();
+        try {
+			return Unirest.post(url).header("X-TrackerToken", apiToken)
+			        .header("Content-Type", "application/json")
+			        .body(payload).asString();
+		} catch (UnirestException uex) {
+			throw new PivotalAPIException(uex);
+		}
     }
 
 
     @Override
-    public HttpResponse<String> delete(String path, com.google.common.collect.Multimap<String, String> params) throws UnirestException {
-        return Unirest.delete(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).asString();
+    public HttpResponse<String> delete(String path, com.google.common.collect.Multimap<String, String> params) throws PivotalAPIException {
+        try {
+			return Unirest.delete(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).asString();
+		} catch (UnirestException uex) {
+			throw new PivotalAPIException(uex);
+		}
     }
 
 }
