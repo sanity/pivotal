@@ -90,7 +90,7 @@ public class JsonRestClient {
             String body = extractBody(response);
             return gson.fromJson(body, cls);
         } catch (RuntimeException e) {
-            throw new RuntimeException("Failed to GET "+path, e);
+            throw new PivotalAPIException("Failed to GET "+path, e);
         }
     }
 
@@ -123,7 +123,7 @@ public class JsonRestClient {
 
     private String extractBody(HttpResponse<String> response) {
         if (response.getStatus() != 200) {
-            throw new RuntimeException("Request failed, status: " + response.getStatus() + ", text: " + response.getStatusText() + " body: " + response.getBody());
+            throw new PivotalAPIException("Request failed, status: " + response.getStatus() + ", text: " + response.getStatusText() + " body: " + response.getBody());
         }
         return response.getBody();
     }
