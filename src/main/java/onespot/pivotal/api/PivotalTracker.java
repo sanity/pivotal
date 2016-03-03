@@ -1,6 +1,6 @@
 package onespot.pivotal.api;
 
-import com.google.common.collect.HashMultimap;
+import java.util.HashMap;
 
 import onespot.pivotal.api.dao.ProjectsDAO;
 import onespot.pivotal.api.resources.Me;
@@ -23,11 +23,11 @@ public class PivotalTracker {
     }
 
     public Me getMe() {
-        return jsonRestClient.get(Me.class, "me", HashMultimap.create());
+        return jsonRestClient.get(Me.class, "me", new HashMap<>());
     }
 
     public ProjectsDAO projects() {
-        return new ProjectsDAO(jsonRestClient, "projects", HashMultimap.create());
+        return new ProjectsDAO(jsonRestClient, "projects", new HashMap<>());
     }
 
 

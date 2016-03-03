@@ -1,9 +1,9 @@
 package onespot.pivotal.api.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 
 import onespot.pivotal.api.resources.Project;
@@ -14,7 +14,7 @@ import onespot.pivotal.rest.JsonRestClient;
  */
 public class ProjectsDAO extends DAO {
 
-    public ProjectsDAO(JsonRestClient jsonRestClient, String pathPrefix, Multimap<String, String> params) {
+    public ProjectsDAO(JsonRestClient jsonRestClient, String pathPrefix, Map<String, String> params) {
         super(jsonRestClient, pathPrefix, params);
     }
 

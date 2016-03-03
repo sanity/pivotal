@@ -1,10 +1,10 @@
 package onespot.pivotal.rest;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Multimap;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
@@ -23,7 +23,7 @@ public class PivotalRestClient implements RestClient {
     }
 
     @Override
-    public HttpResponse<String> get(String path, Multimap<String, String> params) throws PivotalAPIException {
+    public HttpResponse<String> get(String path, Map<String, String> params) throws PivotalAPIException {
         String parameters = paramsToStringWithoutURLEncoding(params);
 
         String url = URL_PREFIX+"/"+path+"?"+parameters;
@@ -44,8 +44,8 @@ public class PivotalRestClient implements RestClient {
      * TODO: Figure out what the actual standard is, which hopefully permits
      *       commas in query parameter values, and enforce that.
      */
-    private String paramsToStringWithoutURLEncoding(Multimap<String, String> params) {
-        List<String> parameterList = params.entries().stream()
+    private String paramsToStringWithoutURLEncoding(Map<String, String> params) {
+    	List<String> parameterList = params.entrySet().stream()
                 .map(entry -> entry.getKey()+"="+entry.getValue())
                 .collect(Collectors.toList());
 
@@ -54,7 +54,7 @@ public class PivotalRestClient implements RestClient {
 
 
     @Override
-    public HttpResponse<String> put(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws PivotalAPIException {
+    public HttpResponse<String> put(String path, Map<String, String> params, String payload) throws PivotalAPIException {
         try {
 			return Unirest.put(URL_PREFIX+ "/" + path).header("X-TrackerToken", apiToken)
 			        .header("Content-Type", "application/json")
@@ -66,7 +66,7 @@ public class PivotalRestClient implements RestClient {
 
 
     @Override
-    public HttpResponse<String> post(String path, com.google.common.collect.Multimap<String, String> params, String payload) throws PivotalAPIException {
+    public HttpResponse<String> post(String path, Map<String, String> params, String payload) throws PivotalAPIException {
         String url = URL_PREFIX + "/" + path;
         try {
 			return Unirest.post(url).header("X-TrackerToken", apiToken)
@@ -79,7 +79,7 @@ public class PivotalRestClient implements RestClient {
 
 
     @Override
-    public HttpResponse<String> delete(String path, com.google.common.collect.Multimap<String, String> params) throws PivotalAPIException {
+    public HttpResponse<String> delete(String path, Map<String, String> params) throws PivotalAPIException {
         try {
 			return Unirest.delete(URL_PREFIX + "/" + path).header("X-TrackerToken", apiToken).asString();
 		} catch (UnirestException uex) {
