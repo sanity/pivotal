@@ -1,7 +1,7 @@
 package onespot.pivotal.api.dao;
 
 import com.google.common.collect.Multimap;
-import com.mashape.unirest.http.exceptions.UnirestException;
+
 import onespot.pivotal.api.resources.Story;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -13,11 +13,11 @@ public class StoryDAO extends DAO {
         super(jsonRestClient, path, params);
     }
 
-    public Story get() throws UnirestException {
+    public Story get() {
         return jsonRestClient.get(Story.class, path, params);
     }
 
-    public void put(Story story) throws UnirestException {
+    public void put(Story story) {
         jsonRestClient.put(Story.class, path, params, story);
     }
 

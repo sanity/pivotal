@@ -1,7 +1,7 @@
 package onespot.pivotal.api;
 
 import com.google.common.collect.HashMultimap;
-import com.mashape.unirest.http.exceptions.UnirestException;
+
 import onespot.pivotal.api.dao.ProjectsDAO;
 import onespot.pivotal.api.resources.Me;
 import onespot.pivotal.rest.JsonRestClient;
@@ -22,11 +22,11 @@ public class PivotalTracker {
         this.jsonRestClient = jsonRestClient;
     }
 
-    public Me getMe() throws UnirestException {
+    public Me getMe() {
         return jsonRestClient.get(Me.class, "me", HashMultimap.create());
     }
 
-    public ProjectsDAO projects() throws UnirestException {
+    public ProjectsDAO projects() {
         return new ProjectsDAO(jsonRestClient, "projects", HashMultimap.create());
     }
 

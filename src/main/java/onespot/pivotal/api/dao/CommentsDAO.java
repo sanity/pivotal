@@ -1,12 +1,12 @@
 package onespot.pivotal.api.dao;
 
+import java.util.List;
+
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
-import com.mashape.unirest.http.exceptions.UnirestException;
+
 import onespot.pivotal.api.resources.Comment;
 import onespot.pivotal.rest.JsonRestClient;
-
-import java.util.List;
 
 /**
  * Created by ian on 3/30/15.
@@ -16,19 +16,19 @@ public class CommentsDAO extends DAO {
         super(jsonRestClient, pathPrefix, params);
     }
 
-    public List<Comment> get() throws UnirestException {
+    public List<Comment> get() {
         return jsonRestClient.get(new TypeToken<List<Comment>>(){}.getType(), path, params);
     }
 
-    public Comment get(int id) throws UnirestException {
+    public Comment get(int id) {
         return jsonRestClient.get(Comment.class, path+"/"+id, params);
     }
 
-    public void put(int id, Comment comment) throws UnirestException {
+    public void put(int id, Comment comment) {
         jsonRestClient.put(Comment.class, path+"/"+id, params, comment);
     }
 
-    public void post(Comment comment) throws UnirestException {
+    public void post(Comment comment) {
         jsonRestClient.post(Comment.class, path, params, comment);
     }
 }

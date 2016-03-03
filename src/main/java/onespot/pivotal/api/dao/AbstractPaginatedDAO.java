@@ -1,12 +1,12 @@
 package onespot.pivotal.api.dao;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Multimap;
-import com.mashape.unirest.http.exceptions.UnirestException;
-import onespot.pivotal.rest.JsonRestClient;
-
 import java.lang.reflect.Type;
 import java.util.List;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
+
+import onespot.pivotal.rest.JsonRestClient;
 
 /**
  * Created by ian on 3/30/15.
@@ -18,7 +18,7 @@ public abstract class AbstractPaginatedDAO<R> extends DAO {
         super(jsonRestClient, path, params);
     }
 
-    public List<R> get() throws UnirestException {
+    public List<R> get() {
         return jsonRestClient.get(getListTypeToken(), path, params);
     }
 
@@ -26,9 +26,8 @@ public abstract class AbstractPaginatedDAO<R> extends DAO {
      * Retrieve all items under this DAO using the pagination mechanism.
      * As this may require multiple calls to the pivotal API, it might take a while.
      * @return
-     * @throws UnirestException
      */
-    public List<R> getAll() throws UnirestException {
+    public List<R> getAll() {
         List<R> items = Lists.newArrayList();
         int position = 0;
         while (true) {
