@@ -3,9 +3,9 @@ package onespot.pivotal.api.dao;
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Joiner;
-import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 
 import onespot.pivotal.api.resources.Story;
@@ -15,7 +15,7 @@ import onespot.pivotal.rest.JsonRestClient;
  * Created by ian on 3/29/15.
  */
 public class StoriesDAO extends AbstractPaginatedDAO<Story> {
-    public StoriesDAO(JsonRestClient jsonRestClient, String pathPrefix, Multimap<String, String> params) {
+    public StoriesDAO(JsonRestClient jsonRestClient, String pathPrefix, Map<String, String> params) {
         super(jsonRestClient, pathPrefix, params);
     }
 

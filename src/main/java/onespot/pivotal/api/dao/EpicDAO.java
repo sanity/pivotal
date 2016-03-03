@@ -1,6 +1,6 @@
 package onespot.pivotal.api.dao;
 
-import com.google.common.collect.Multimap;
+import java.util.Map;
 
 import onespot.pivotal.api.resources.Epic;
 import onespot.pivotal.rest.JsonRestClient;
@@ -9,7 +9,7 @@ import onespot.pivotal.rest.JsonRestClient;
  * Created by ian on 3/29/15.
  */
 public class EpicDAO extends DAO {
-    public EpicDAO(JsonRestClient jsonRestClient, String path, Multimap<String, String> params) {
+    public EpicDAO(JsonRestClient jsonRestClient, String path, Map<String, String> params) {
         super(jsonRestClient, path, params);
     }
 

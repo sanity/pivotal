@@ -3,9 +3,9 @@ package onespot.pivotal.rest;
 import java.lang.reflect.Type;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Multimap;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -78,13 +78,13 @@ public class JsonRestClient {
                 .create();
     }
 
-    public <T> T get(Class<T> cls, String path, Multimap<String, String> params) throws PivotalAPIException {
+    public <T> T get(Class<T> cls, String path, HashMap<String, String> params) throws PivotalAPIException {
         HttpResponse<String> response = httpResponse(path, params);
         String body = extractBody(response);
         return gson.fromJson(body, cls);
     }
 
-    public <T> T get(Type cls, String path, Multimap<String, String> params) throws PivotalAPIException {
+    public <T> T get(Type cls, String path, Map<String, String> params) throws PivotalAPIException {
         HttpResponse<String> response = httpResponse(path, params);
         try {
             String body = extractBody(response);
@@ -94,32 +94,30 @@ public class JsonRestClient {
         }
     }
 
-    public <T> T put(Type cls, String path, Multimap<String, String> params, T payload) throws PivotalAPIException {
+    public <T> T put(Type cls, String path, Map<String, String> params, T payload) throws PivotalAPIException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T put(Class<T> cls, String path, Multimap<String, String> params, T payload) throws PivotalAPIException {
+    public <T> T put(Class<T> cls, String path, Map<String, String> params, T payload) throws PivotalAPIException {
         return gson.fromJson(extractBody(restClient.put(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T post(Class<T> cls, String path, Multimap<String, String> params, T payload) throws PivotalAPIException {
+    public <T> T post(Class<T> cls, String path, Map<String, String> params, T payload) throws PivotalAPIException {
         String payloadJson = gson.toJson(payload);
         return gson.fromJson(extractBody(restClient.post(path, params, payloadJson)), cls);
     }
 
-    public <T> T post(Type cls, String path, Multimap<String, String> params, T payload) throws PivotalAPIException {
+    public <T> T post(Type cls, String path, Map<String, String> params, T payload) throws PivotalAPIException {
         return gson.fromJson(extractBody(restClient.post(path, params, gson.toJson(payload))), cls);
     }
 
-    public <T> T delete(Class<T> cls, String path, Multimap<String, String> params) throws PivotalAPIException {
+    public <T> T delete(Class<T> cls, String path, Map<String, String> params) throws PivotalAPIException {
         return gson.fromJson(extractBody(restClient.delete(path, params)), cls);
     }
 
-    public <T> T delete(Type cls, String path, Multimap<String, String> params) throws PivotalAPIException {
+    public <T> T delete(Type cls, String path, Map<String, String> params) throws PivotalAPIException {
         return gson.fromJson(extractBody(restClient.delete(path, params)), cls);
     }
-
-
 
     private String extractBody(HttpResponse<String> response) {
         if (response.getStatus() != 200) {
@@ -128,13 +126,7 @@ public class JsonRestClient {
         return response.getBody();
     }
 
-
-
-    private HttpResponse<String> httpResponse(String path) {
-        return httpResponse(path, HashMultimap.create());
-    }
-
-    private HttpResponse<String> httpResponse(String path, Multimap<String, String> params) throws PivotalAPIException {
+    private HttpResponse<String> httpResponse(String path, Map<String, String> params) throws PivotalAPIException {
     	return restClient.get(path, params);
     }
 }
