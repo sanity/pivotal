@@ -25,6 +25,7 @@ import onespot.pivotal.api.ex.PivotalAPIException;
  * Created by ian on 3/27/15.
  */
 public class JsonRestClient {
+	private static final String NULL_DATE = "0000-00-00T00:00:00Z";
     private final RestClient restClient;
     private final Gson gson;
 
@@ -32,6 +33,9 @@ public class JsonRestClient {
 
         @Override
         public Instant deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        	if(NULL_DATE.equals(json.getAsString())){
+        		return null;
+        	}
             return Instant.parse(json.getAsString());
         }
 
@@ -45,6 +49,9 @@ public class JsonRestClient {
 
         @Override
         public LocalDate deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        	if(NULL_DATE.equals(json.getAsString())){
+        		return null;
+        	}
             return LocalDate.parse(json.getAsString());
         }
 
