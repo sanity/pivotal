@@ -1,7 +1,7 @@
 package onespot.pivotal.api.dao;
 
 import com.google.common.collect.Multimap;
-
+import onespot.pivotal.api.resources.ProjectMembership;
 import onespot.pivotal.api.resources.Story;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -29,6 +29,14 @@ public class StoryDAO extends DAO {
         return new CommentsDAO(jsonRestClient, path + "/comments", params);
     }
 
+    public ProjectMembership requester() {
+        String[] pathSplitted = this.path.split("/");
+        pathSplitted[pathSplitted.length - 1] = "memberships";
+        String membershipsPath = String.join("/", pathSplitted);
+        ProjectMembershipsDAO projectMembershipsDAO = new ProjectMembershipsDAO(jsonRestClient, membershipsPath, params);
+        Story story = this.get();
+        return projectMembershipsDAO.getMembershipFromStory(story);
+    }
 
     public ActivitiesDAO activity() {
         return new ActivitiesDAO(jsonRestClient, path + "/activity", params);
