@@ -11,6 +11,7 @@ public class Comment {
     public Integer storyId;
     public Integer epicId;
     public String text;
+    public String url;
     public Integer personId;
     public Person person;
     public Instant createdAt, updatedAt;
@@ -107,6 +108,14 @@ public class Comment {
 
     public void setCommitIdentifier(String commitIdentifier) {
         this.commitIdentifier = commitIdentifier;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getKind() {

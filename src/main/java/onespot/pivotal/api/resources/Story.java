@@ -24,6 +24,7 @@ public class Story {
     public String externalId;
     public String url;
     public String kind;
+    public Person requester;
 
     public List<Person> getOwners() {
         return owners;
@@ -31,6 +32,13 @@ public class Story {
 
     public void setOwners(List<Person> owners) {
         this.owners = owners;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + projectId;
+        return result;
     }
 
     @Override
@@ -43,13 +51,6 @@ public class Story {
         if (id != story.id) return false;
         return projectId == story.projectId;
 
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + projectId;
-        return result;
     }
 
     public List<Label> getLabels() {
@@ -244,6 +245,14 @@ public class Story {
         this.kind = kind;
     }
 
+    public Person getRequester() {
+        return requester;
+    }
+
+    public void setRequester(Person requester) {
+        this.requester = requester;
+    }
+
     public enum StoryType {
         feature, bug, chore, release
     }
@@ -253,6 +262,6 @@ public class Story {
     }
 
     public enum StoryFieldNames {
-        id,project_id,name,description,story_type,current_state,estimate,accepted_at,deadline,created_at,updated_at,requested_by_id,owner_ids,label_ids,task_ids,follower_ids,comment_ids,labels,before_id,after_id,integration_id,owners,external_id,url,kind
+        id, project_id, name, description, story_type, current_state, estimate, accepted_at, deadline, created_at, updated_at, requested_by_id, owner_ids, label_ids, task_ids, follower_ids, comment_ids, labels, before_id, after_id, integration_id, owners, external_id, url, kind
     }
 }

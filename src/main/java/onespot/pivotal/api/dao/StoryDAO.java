@@ -14,7 +14,10 @@ public class StoryDAO extends DAO {
     }
 
     public Story get() {
-        return jsonRestClient.get(Story.class, path, params);
+        Story story = jsonRestClient.get(Story.class, path, params);
+        story.setOwners(this.owners().getAll());
+        story.setRequester(this.requester().getPerson());
+        return story;
     }
 
     public void put(Story story) {

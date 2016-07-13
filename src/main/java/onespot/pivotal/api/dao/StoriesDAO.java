@@ -1,15 +1,14 @@
 package onespot.pivotal.api.dao;
 
-import java.lang.reflect.Type;
-import java.time.Instant;
-import java.util.List;
-
 import com.google.common.base.Joiner;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
-
 import onespot.pivotal.api.resources.Story;
 import onespot.pivotal.rest.JsonRestClient;
+
+import java.lang.reflect.Type;
+import java.time.Instant;
+import java.util.List;
 
 /**
  * Created by ian on 3/29/15.
@@ -29,6 +28,16 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
     public List<Story> get() {
         return jsonRestClient.get(new TypeToken<List<Story>>() {
         }.getType(), path, params);
+    }
+
+    @Override
+    public List<Story> getAll() {
+        List<Story> stories = super.getAll();
+        for (Story story : stories) {
+            story.setOwners(this.id(story.getId()).owners().getAll());
+            story.setRequester(this.id(story.getId()).requester().getPerson());
+        }
+        return stories;
     }
 
     public StoryDAO id(int id) {
