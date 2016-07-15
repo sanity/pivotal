@@ -36,7 +36,7 @@ public class CommentsDAO extends DAO {
 
     public Person person(Comment comment) {
         String[] pathSplitted = this.path.split("/");
-        String[] finalPathSplitted = new String[pathSplitted.length - 1];
+        String[] finalPathSplitted = new String[pathSplitted.length - 2];
         pathSplitted[pathSplitted.length - 3] = "memberships";
         System.arraycopy(pathSplitted, 0, finalPathSplitted, 0, pathSplitted.length - 2);
         String membershipsPath = String.join("/", finalPathSplitted);
