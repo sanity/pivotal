@@ -26,13 +26,8 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
 
     @Override
     public List<Story> get() {
-        return jsonRestClient.get(new TypeToken<List<Story>>() {
+        List<Story> stories = jsonRestClient.get(new TypeToken<List<Story>>() {
         }.getType(), path, params);
-    }
-
-    @Override
-    public List<Story> getAll() {
-        List<Story> stories = super.getAll();
         for (Story story : stories) {
             story.setOwners(this.id(story.getId()).owners().getAll());
             story.setRequester(this.id(story.getId()).requester().getPerson());
