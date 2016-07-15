@@ -23,7 +23,7 @@ public class CommentsDAO extends DAO {
         }.getType(), path, params);
         for (Comment comment : comments) {
             comment.setUrl(PivotalRestClient.URL_UI + this.path + comment.getId());
-
+            comment.setPerson(this.person(comment));
         }
         return comments;
     }
