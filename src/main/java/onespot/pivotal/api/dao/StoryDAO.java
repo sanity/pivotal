@@ -16,7 +16,7 @@ public class StoryDAO extends DAO {
     public Story get() {
         Story story = jsonRestClient.get(Story.class, path, params);
         story.setOwners(this.owners().getAll());
-        story.setRequester(this.requester().getPerson());
+        story.setRequester(this.requester(story).getPerson());
         return story;
     }
 
@@ -33,11 +33,17 @@ public class StoryDAO extends DAO {
     }
 
     public ProjectMembership requester() {
-        String[] pathSplitted = this.path.split("/");
-        pathSplitted[pathSplitted.length - 1] = "memberships";
-        String membershipsPath = String.join("/", pathSplitted);
-        ProjectMembershipsDAO projectMembershipsDAO = new ProjectMembershipsDAO(jsonRestClient, membershipsPath, params);
         Story story = this.get();
+        return this.requester(story);
+    }
+
+    private ProjectMembership requester(Story story) {
+        String[] pathSplitted = this.path.split("/");
+        String[] finalPathSplitted = new String[pathSplitted.length - 1];
+        pathSplitted[pathSplitted.length - 2] = "memberships";
+        System.arraycopy(pathSplitted, 0, finalPathSplitted, 0, pathSplitted.length - 1);
+        String membershipsPath = String.join("/", finalPathSplitted);
+        ProjectMembershipsDAO projectMembershipsDAO = new ProjectMembershipsDAO(jsonRestClient, membershipsPath, params);
         return projectMembershipsDAO.getMembershipFromStory(story);
     }
 
