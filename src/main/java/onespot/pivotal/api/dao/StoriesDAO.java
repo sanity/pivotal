@@ -1,6 +1,7 @@
 package onespot.pivotal.api.dao;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import onespot.pivotal.api.resources.Story;
@@ -36,11 +37,11 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
     }
 
     public StoryDAO id(int id) {
-        return new StoryDAO(jsonRestClient, path + "/" + id, params);
+        return new StoryDAO(jsonRestClient, path + "/" + id, HashMultimap.create());
     }
 
     public void post(Story story) {
-        jsonRestClient.post(Story.class, path, params, story);
+        jsonRestClient.post(Story.class, path, HashMultimap.create(), story);
     }
 
     public StoriesDAO withFields(Story.StoryFieldNames... fields) {
