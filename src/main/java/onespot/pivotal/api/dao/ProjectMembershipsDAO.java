@@ -25,8 +25,12 @@ public class ProjectMembershipsDAO extends DAO {
     }
 
     public ProjectMembership getMembershipFromStory(Story story) {
+        return getMembershipFromPersonId(story.requestedById);
+    }
+
+    public ProjectMembership getMembershipFromPersonId(int personId) {
         for (ProjectMembership membership : getAll()) {
-            if (membership.getPerson().id == story.requestedById) {
+            if (membership.getPerson().id == personId) {
                 return membership;
             }
         }
