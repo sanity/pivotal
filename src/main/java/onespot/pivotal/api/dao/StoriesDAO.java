@@ -30,7 +30,7 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
         }.getType(), path, params);
         for (Story story : stories) {
             story.setOwners(this.id(story.getId()).owners().getAll());
-            story.setRequester(this.id(story.getId()).requester().getPerson());
+            story.setRequester(this.id(story.getId()).requester(story).getPerson());
         }
         return stories;
     }

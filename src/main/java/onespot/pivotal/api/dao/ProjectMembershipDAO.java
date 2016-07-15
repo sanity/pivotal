@@ -14,7 +14,6 @@ public class ProjectMembershipDAO extends DAO {
     }
 
     public ProjectMembership get() {
-        System.out.println(this.path);
         return (ProjectMembership) this.jsonRestClient.get(ProjectMembership.class, this.path, this.params);
     }
 }

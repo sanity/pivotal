@@ -37,7 +37,7 @@ public class StoryDAO extends DAO {
         return this.requester(story);
     }
 
-    private ProjectMembership requester(Story story) {
+    public ProjectMembership requester(Story story) {
         String[] pathSplitted = this.path.split("/");
         String[] finalPathSplitted = new String[pathSplitted.length - 1];
         pathSplitted[pathSplitted.length - 2] = "memberships";
