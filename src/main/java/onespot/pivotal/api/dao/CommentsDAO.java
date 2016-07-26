@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
 import onespot.pivotal.api.resources.Comment;
 import onespot.pivotal.api.resources.Person;
+import onespot.pivotal.api.resources.ProjectMembership;
 import onespot.pivotal.rest.JsonRestClient;
 import onespot.pivotal.rest.PivotalRestClient;
 
@@ -41,7 +42,11 @@ public class CommentsDAO extends DAO {
         System.arraycopy(pathSplitted, 0, finalPathSplitted, 0, pathSplitted.length - 2);
         String membershipsPath = String.join("/", finalPathSplitted);
         ProjectMembershipsDAO projectMembershipsDAO = new ProjectMembershipsDAO(jsonRestClient, membershipsPath, params);
-        return projectMembershipsDAO.getMembershipFromPersonId(comment.personId).getPerson();
+        ProjectMembership projectMembership = projectMembershipsDAO.getMembershipFromPersonId(comment.personId);
+        if (projectMembership != null) {
+            return projectMembership.getPerson();
+        }
+        return null;
     }
 
     public void put(int id, Comment comment) {
