@@ -4,6 +4,7 @@ import com.google.common.base.Joiner;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.google.gson.reflect.TypeToken;
+import onespot.pivotal.api.resources.ProjectMembership;
 import onespot.pivotal.api.resources.Story;
 import onespot.pivotal.rest.JsonRestClient;
 
@@ -31,7 +32,11 @@ public class StoriesDAO extends AbstractPaginatedDAO<Story> {
         }.getType(), path, params);
         for (Story story : stories) {
             story.setOwners(this.id(story.getId()).owners().getAll());
-            story.setRequester(this.id(story.getId()).requester(story).getPerson());
+            ProjectMembership projectMembership = this.id(story.getId()).requester(story);
+            if (projectMembership != null) {
+                story.setRequester(projectMembership.getPerson());
+            }
+
         }
         return stories;
     }
