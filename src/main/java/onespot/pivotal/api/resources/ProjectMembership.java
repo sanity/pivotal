@@ -31,7 +31,7 @@ public class ProjectMembership {
         this.id = id;
     }
 
-    public String getName() {
+    public String name() {
         return name;
     }
 
@@ -39,7 +39,7 @@ public class ProjectMembership {
         this.name = name;
     }
 
-    public String getKind() {
+    public String kind() {
         return kind;
     }
 
@@ -47,7 +47,7 @@ public class ProjectMembership {
         this.kind = kind;
     }
 
-    public Person getPerson() {
+    public Person person() {
         return person;
     }
 
@@ -55,7 +55,7 @@ public class ProjectMembership {
         this.person = person;
     }
 
-    public Instant getCreatedAt() {
+    public Instant createdAt() {
         return createdAt;
     }
 
@@ -63,7 +63,7 @@ public class ProjectMembership {
         this.createdAt = createdAt;
     }
 
-    public Instant getLastViewedAt() {
+    public Instant lastViewedAt() {
         return lastViewedAt;
     }
 
@@ -71,7 +71,7 @@ public class ProjectMembership {
         this.lastViewedAt = lastViewedAt;
     }
 
-    public Instant getUpdatedAt() {
+    public Instant updatedAt() {
         return updatedAt;
     }
 
@@ -79,7 +79,7 @@ public class ProjectMembership {
         this.updatedAt = updatedAt;
     }
 
-    public int getProjectId() {
+    public int projectId() {
         return projectId;
     }
 
@@ -87,7 +87,7 @@ public class ProjectMembership {
         this.projectId = projectId;
     }
 
-    public String getProjectColor() {
+    public String projectColor() {
         return projectColor;
     }
 
@@ -95,7 +95,7 @@ public class ProjectMembership {
         this.projectColor = projectColor;
     }
 
-    public String getRole() {
+    public String role() {
         return role;
     }
 
@@ -103,7 +103,7 @@ public class ProjectMembership {
         this.role = role;
     }
 
-    public boolean isWantsCommentNotificationEmails() {
+    public boolean wantsCommentNotificationEmails() {
         return wantsCommentNotificationEmails;
     }
 
@@ -111,7 +111,7 @@ public class ProjectMembership {
         this.wantsCommentNotificationEmails = wantsCommentNotificationEmails;
     }
 
-    public boolean isWillReceiveMentionNotificationsOrEmails() {
+    public boolean willReceiveMentionNotificationsOrEmails() {
         return willReceiveMentionNotificationsOrEmails;
     }
 
