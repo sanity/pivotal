@@ -34,5 +34,4 @@ Contributions to support more of the API are very welcome, the basic framework i
 * [onespot.pivotal.api.dao](https://github.com/onespot/pivotal/tree/master/src/main/java/onespot/pivotal/api/dao) - Classes that correspond roughly to [endpoints](https://www.pivotaltracker.com/help/api/rest/v5#Endpoints) in the Pivotal API
 * [onespot.pivotal.rest](https://github.com/onespot/pivotal/tree/master/src/main/java/onespot/pivotal/rest) - The REST machinery (uses [Google Gson](https://code.google.com/p/google-gson/) for POJO-JSON mapping)
 
-
-
+Feel free to create pull requests, however it can be easy to overlook these notifications so you may also want to email me at **pullrequest [at] ian [dot] 33mail [dot] com** to ensure I'm aware of it so I can review and merge promptly.
