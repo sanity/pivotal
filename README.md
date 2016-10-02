@@ -18,9 +18,13 @@ A fluent Java 8 library to access the [Pivotal Tracker API](https://www.pivotalt
 
 The library is far from complete, the API is perhaps only 10% supported so far, however it is probably the most useful 10%.  Adding support for new parts of the API is very easy (see below), and pull requests will be most welcome.
 
-### Maven / Gradle
+### Dependency Management tools
 
-See [JitPack.io](https://jitpack.io/#sanity/pivotal/).  Note that we follow the [Semantic Versioning](http://semver.org/) convention for version numbers.
+This library is available via Gradle, Maven, SBT, Leiningen and compatible dependency management tools through the excellent JitPack:
+
+[![Release](https://jitpack.io/v/User/Repo.svg)](https://jitpack.io/#User/Repo)
+
+Note that we follow the [Semantic Versioning](http://semver.org/) convention for version numbers.
 
 ### Contributing
 
