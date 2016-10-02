@@ -20,7 +20,7 @@ The library is far from complete, the API is perhaps only 10% supported so far, 
 
 ### Maven / Gradle
 
-See [JitPack.io](https://jitpack.io/#sanity/pivotal/).
+See [JitPack.io](https://jitpack.io/#sanity/pivotal/).  Note that we follow the [Semantic Versioning](http://semver.org/) convention for version numbers.
 
 ### Contributing
 
